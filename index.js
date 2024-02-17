@@ -1,6 +1,7 @@
+import 'dotenv/config';
 import mongoose from "mongoose";
 import express from "express";
-import { PORT, MONGO_DB_URL } from "./config.js";
+import { PORT, VITE_MONGO_DB_URI } from "./config.js";
 import cors from "cors";
 import itemsRoute from "./routes/itemsRoute.js";
 
@@ -16,7 +17,7 @@ app.get("/", (request, response) => {
 app.use('/items', itemsRoute);
 
 mongoose
-  .connect(MONGO_DB_URL)
+  .connect(VITE_MONGO_DB_URI)
   .then(() => {
     console.log("App connected to database");
     app.listen(PORT, () => {
